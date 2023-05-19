@@ -3,6 +3,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
+import UserSidebar from './Authentication/UserSidebar';
 
 const useStyles = makeStyles(()=> ({
   title: {
@@ -24,7 +25,7 @@ function handleLogoClick() {
   navigate('/');
 }
 
-const {currency, setCurrency} = CryptoState()
+const {currency, setCurrency, user} = CryptoState()
 
 const darkTheme = createTheme({
   palette: {
@@ -55,7 +56,7 @@ const darkTheme = createTheme({
             <MenuItem value={'CNY'}>CNY</MenuItem>
 
           </Select>
-          <AuthModal />
+           { user ? <UserSidebar /> : <AuthModal />}
         </Toolbar>
       </Container>
 
